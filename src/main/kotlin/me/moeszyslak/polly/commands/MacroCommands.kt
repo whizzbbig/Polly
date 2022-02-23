@@ -45,6 +45,16 @@ fun macroCommands(macroService: MacroService) = commands("Macros") {
             respond(macroService.addMacro(guild.id.value, name, category, channel, contents))
         }
     }
+    
+    command("Link") {
+        description = "Send link of youtube live stream"
+        requiredPermission = Permissions.STAFF
+
+        execute(UrlArg) {
+            val url = args.first
+            respond(macroService.addMacro("hey! 👋 everyone we are going live soon on my youtube channel: ${url}"))
+        }
+    }
 
     command("AddTrackedMacro") {
         description = "Adds a tracked macro (for all channels)"
